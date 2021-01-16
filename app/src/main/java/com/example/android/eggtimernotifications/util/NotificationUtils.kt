@@ -62,6 +62,13 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigLargeIcon(null)
 
     // TODO: Step 2.2 add snooze action
+    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
+        applicationContext,
+        REQUEST_CODE,
+        snoozeIntent,
+        FLAGS
+    )
 
     // Done: Step 1.2 get an instance of NotificationCompat.Builder
     // Build the notification
@@ -76,6 +83,11 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setAutoCancel(true)
         .setStyle(bigPicStyle)
         .setLargeIcon(eggImage)
+        .addAction(
+            R.drawable.egg_icon,
+            applicationContext.getString(R.string.snooze),
+            snoozePendingIntent
+        )
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 
@@ -85,7 +97,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
     // DONE: Step 2.1 add style to builder
 
-    // TODO: Step 2.3 add snooze action
+    // DONE: Step 2.3 add snooze action
 
     // TODO: Step 2.5 set priority
 
@@ -93,7 +105,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     notify(NOTIFICATION_ID, builder.build())
 }
 
-// TODO: Step 1.14 Cancel all notifications
+// DONE: Step 1.14 Cancel all notifications
 
 fun NotificationManager.cancelNotifications(){
     cancelAll()
