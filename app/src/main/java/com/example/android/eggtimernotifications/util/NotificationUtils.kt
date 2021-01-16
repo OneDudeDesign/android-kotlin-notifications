@@ -61,7 +61,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigPicture(eggImage)
         .bigLargeIcon(null)
 
-    // TODO: Step 2.2 add snooze action
+    // DONE: Step 2.2 add snooze action
     val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
     val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
         applicationContext,
@@ -89,7 +89,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
             snoozePendingIntent
         )
 
-    // TODO: Step 1.8 use the new 'breakfast' notification channel
+    // DONE: Step 1.8 use the new 'breakfast' notification channel
 
     // DONE: Step 1.3 set title, text and icon to builder
 
@@ -99,7 +99,8 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
     // DONE: Step 2.3 add snooze action
 
-    // TODO: Step 2.5 set priority
+    // DONE: Step 2.5 set priority
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     // DONE: Step 1.4 call notify
     notify(NOTIFICATION_ID, builder.build())
